@@ -14,7 +14,6 @@ int main() {
     std::map<int, int> myMap;
     std::unordered_map<int, int> myHash;
 
-    // identity map for the first 10 million natural numbers
     for (long long i = 0; i < mapSize; ++i) {
         myMap[i] = i;
         myHash[i] = i;
@@ -23,13 +22,10 @@ int main() {
     std::vector<int> randValues;
     randValues.reserve(accSize);
 
-    // random values
     std::random_device seed;
     std::mt19937 engine(seed());
     std::uniform_int_distribution<> uniformDist(0, mapSize);
     for (long long i = 0; i < accSize; ++i) randValues.push_back(uniformDist(engine));
-
-    // read 1 million randomly choosen values from the map and the unordered_map
 
     auto start = std::chrono::system_clock::now();
     for (long long i = 0; i < accSize; ++i) {
